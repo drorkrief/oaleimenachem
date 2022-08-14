@@ -6,11 +6,14 @@ app.get("/api", (req,res) => {
     res.json({name:["dror","mosh"]})
 })
 app.get("/login", (req, res) => {
-   
     // verificate(req)
     console.log(req.method);
     res.send("hello11")
 
+})
+app.get("/check_user", (req, res) => {
+    console.log(req.method);
+    res.send("we are good!")
 })
 
 app.listen(port, () => {console.log(`server is listen on port ${port}`)})
