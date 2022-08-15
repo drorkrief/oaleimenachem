@@ -27,11 +27,9 @@ function Home() {
   return (
     <>
       <div>Home</div>
-      <button onClick={click1}>ddd</button>
+      <button onClick={click1}>login</button>
       {/* <p>{data && data.name[0]}</p> */}
-      <p>
-        {JSON.stringify( first)}
-      </p>
+     
     </>
   );
 }

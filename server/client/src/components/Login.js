@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Login() {
   const [name, setName] = useState("");
   const [pass, setPass] = useState("");
   const [type, setType] = useState("");
+  const [user, setUser] = useState("");
+  const navigate = useNavigate()
 
   // const clickHandler = () => {
   //   console.log(name + pass);
@@ -17,11 +19,26 @@ function Login() {
       console.log(res.data);
       setType(res.data.type);
       // res.data.type === "parent" && useNavigate("/parent");
-      localStorage.setItem("user", JSON.stringify({ key:"qweqweqw123wwqw",name:"dror", type:"parent"}))
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ key: "qweqweqw123wwqw", name: "dror", type: "parent" })
+      );
     });
     setName("");
     setPass("");
   };
+
+  useEffect(() => {
+    try {
+      const userStorage = localStorage.getItem("user");
+      userStorage && setUser(true);
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+  const click1 = () => {
+    navigate("/")
+  }
   return (
     <>
       {type === "parent" && <Navigate to="/" />}
@@ -54,6 +71,13 @@ function Login() {
         <input type="submit" />
         {/* <button onClick={clickHandler}>send</button> */}
       </form>
+      {user && (
+        <>
+          <h1>אתה כבר מחובר למערכת</h1>
+      <button onClick={click1}>חזור</button>
+
+        </>
+      )}
     </>
   );
 }
