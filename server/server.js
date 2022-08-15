@@ -9,8 +9,11 @@ app.get("/login", (req, res) => {
     // verificate(req)
     console.log(req.method);
     res.send("hello11")
-
 })
+app.get("/login_info", (req, res) => {
+res.send({name:"123",key:"987123", type:"parent"})
+})
+
 app.get("/check_user", (req, res) => {
     console.log(req.method);
     res.send("we are good!")
