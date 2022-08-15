@@ -70,7 +70,6 @@ function Login() {
         </label>
         <input type="submit" />
         {/* <button onClick={clickHandler}>send</button> */}
-      </form>
       {user && (
         <>
           <h1>אתה כבר מחובר למערכת</h1>
@@ -78,6 +77,7 @@ function Login() {
 
         </>
       )}
+      </form>
     </>
   );
 }
