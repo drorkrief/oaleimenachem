@@ -7,23 +7,41 @@ function Login() {
   const [pass, setPass] = useState("");
   const [type, setType] = useState("");
   const [user, setUser] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // const clickHandler = () => {
   //   console.log(name + pass);
   // };
   const submitHandle = (event) => {
     event.preventDefault();
+    if (name.length < 4 || pass.length < 2) {
+      return;
+    }
     console.log("submit");
-    axios.get("login_info").then((res) => {
-      console.log(res.data);
-      setType(res.data.type);
-      // res.data.type === "parent" && useNavigate("/parent");
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ key: "qweqweqw123wwqw", name: "dror", type: "parent" })
-      );
-    });
+    // axios.get("login_info").then((res) => {
+    //   console.log(res.data);
+    //   setType(res.data.type);
+    //   // res.data.type === "parent" && useNavigate("/parent");
+    //   localStorage.setItem(
+    //     "user",
+    //     JSON.stringify({ key: "qweqweqw123wwqw", name: "dror", type: "parent" })
+    //   );
+    // });
+    axios({
+      method:"post",
+      url:"/login",
+      data:{
+        email:name,
+        pass:pass
+      }
+    }).then((res) => {
+      setType(res.data.body.role)
+      console.log(res.data.body);
+    })
+    // axios.post("/login").then((res) => {
+    //   console.log(res);
+    // })
+
     setName("");
     setPass("");
   };
@@ -37,8 +55,8 @@ function Login() {
     }
   }, []);
   const click1 = () => {
-    navigate("/")
-  }
+    navigate("/");
+  };
   return (
     <>
       {type === "parent" && <Navigate to="/" />}
@@ -53,7 +71,7 @@ function Login() {
       >
         <h2>התחברות</h2>
         <label>
-          Enter your name:{" "}
+          Enter your email:{" "}
           <input
             type="text"
             value={name}
@@ -63,20 +81,19 @@ function Login() {
         <label>
           Enter your password:{" "}
           <input
-            type="text"
+            type="password"
             value={pass}
             onChange={(e) => setPass(e.target.value)}
           />
         </label>
         <input type="submit" />
         {/* <button onClick={clickHandler}>send</button> */}
-      {user && (
-        <>
-          <h1>אתה כבר מחובר למערכת</h1>
-      <button onClick={click1}>חזור</button>
-
-        </>
-      )}
+        {user && (
+          <>
+            <h1>אתה כבר מחובר למערכת</h1>
+            <button onClick={click1}>חזור</button>
+          </>
+        )}
       </form>
     </>
   );

@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Parents from "./components/Parents";
 import { useNavigate } from "react-router-dom";
+import Signup from "./components/Signup";
 
 function App() {
   const [userActive, setUserActive] = useState();
@@ -34,6 +35,9 @@ function App() {
             <Link to="/login">Login</Link>
           </li>
           <li>
+            <Link to="/signup">Sign up</Link>
+          </li>
+          <li>
             <span onClick={logout}>log out</span>
           </li>
         </ul>
@@ -42,6 +46,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/parent" element={<Parents />} />
           <Route path="*" element={<Errorpage />} />
         </Routes>

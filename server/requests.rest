@@ -1,0 +1,30 @@
+GET http://localhost:5000/posts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZHJvciJ9.b8cJ5AGDNKNcJVmbD9kOho3_0rDXQiEHMdhyfr_FtIs
+###
+
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username": "dror",
+    "pass": "123"
+}
+
+###
+POST http://localhost:5000/signup
+Content-Type: application/json
+
+{
+    "username": "mosh",
+    "pass": "345",
+    "email":"mosh@dror.com",
+    "role":"admin"
+}
+###
+POST  http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "pass": "345",
+    "email":"mosh@dror.com"
+}
