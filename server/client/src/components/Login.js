@@ -35,7 +35,8 @@ function Login() {
         pass:pass
       }
     }).then((res) => {
-      setType(res.data.body.role)
+      setType(res.data.body.role);
+      localStorage.setItem("user", JSON.stringify(res.data.accessToken))
       console.log(res.data.body);
     })
     // axios.post("/login").then((res) => {

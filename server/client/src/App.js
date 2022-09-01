@@ -9,16 +9,16 @@ import { useNavigate } from "react-router-dom";
 import Signup from "./components/Signup";
 
 function App() {
-  const [userActive, setUserActive] = useState();
+  // const [userActive, setUserActive] = useState();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    try {
-      localStorage.getItem("user");
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     localStorage.getItem("user");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
 
   const logout = () => {
     localStorage.removeItem("user");

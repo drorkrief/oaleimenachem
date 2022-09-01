@@ -68,7 +68,9 @@ app.post("/login",isUserExist, async (req, res) => {
       const accessToken = generateAccessToken(req.body.userData);
         res.json({ accessToken: accessToken, body: req.body.userData  });
     } else{
-      res.send('not allowed')
+      // res.send('not allowed')
+      res.status(400).send('not allowed')
+
     }
   } catch (e) {
     res.status(500).send(e.message);
